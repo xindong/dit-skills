@@ -9,6 +9,8 @@ skills/<skill-name>/SKILL.md
 
 ## 安装
 
+不推荐全部安装，请指定需要的skill进行安装
+
 ```bash
 # install all skills
 npx skills add xindong/dit-skills
