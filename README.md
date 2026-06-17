@@ -1,6 +1,6 @@
 # dit-skills
 
-XD Digital IT 团队可复用的 Codex / Claude Code skills 集合。
+XD Digital IT 团队可复用的 XD Maker/Codex / Claude Code skills 集合。
 
 这些 skill 主要用于两类场景：
 
