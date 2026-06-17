@@ -2,6 +2,19 @@
 
 Use this reference when the user is asking for internal office, IT, VPN, SSO, device, permission, onboarding, offboarding, or other company documentation through `xdoa doc`.
 
+## Default goal
+
+Prioritize fast, correct answers.
+
+For common factual lookups, prefer:
+
+- run 1 focused query using the user's wording
+- inspect the top results
+- open only the most relevant current, non-deprecated document
+- answer immediately from the opened document
+
+Do not expand into multiple query variants unless the first query is weak, ambiguous, deprecated, or returns no clearly relevant current document.
+
 ## Workflow
 
 1. Search first:
