@@ -73,9 +73,9 @@ npx skills add xindong/dit-skills --skill codex-token-summary
 npx skills add xindong/dit-skills --skill project-sess-summary
 ```
 
-### `xdoa-office-docs`
+### `xdoa-skill`
 
-基于 `xdoa` CLI 的办公文档检索、个人 OA 实时查询、以及 Flow/OA 流程提交辅助 skill。这个 skill 已经合并了 CLI 使用说明、自动安装说明、知识检索工作流和流程提交工作流。
+`xdoa` 的主入口 skill。主 skill 负责安装、升级、能力总览和路由到子 skill 文件；具体 CLI 使用、文档检索、流程提交细节按需从子文件读取。
 
 适用场景：
 
@@ -83,18 +83,26 @@ npx skills add xindong/dit-skills --skill project-sess-summary
 - 查询当前用户自己的资产、会议室预定、工位、待办审批、OKR 等实时数据
 - 搜索、构建、确认并提交 OA / Flow 审批流程
 
+结构：
+
+- 主 skill：`skills/xdoa-skill/SKILL.md`
+- 子 skill 文件：`references/cli-skill.md`
+- 子 skill 文件：`references/doc-skill.md`
+- 子 skill 文件：`references/flow-skill.md`
+
 核心能力：
 
 - 若未安装 `xdoa`，先自动执行安装脚本
-- 使用 `xdoa doc query` / `xdoa doc view` 检索和阅读内部文档
-- 使用 `xdoa asset` / `reserve` / `space` / `okr` / `flow get task` 处理用户态 OA 查询
-- 使用 `xdoa flow search` / `form` / `build` / `submit` 完成流程提交前后的标准操作
-- 明确要求提交流程前先做人类可读确认，避免直接提交敏感审批
+- 执行 `xdoa version` 时如果发现有新版本，提示再次执行安装脚本完成升级
+- 说明 `xdoa` 的主要能力边界，并按任务类型路由到子 skill 文件
+- `cli-skill`：说明 auth、自动刷新、静默补 token、通用命令使用和实时 OA 查询
+- `doc-skill`：说明 `xdoa doc query` / `xdoa doc view` 的文档检索工作流
+- `flow-skill`：说明 `xdoa flow` 的搜索、构造、确认、提交、验证工作流
 
 安装：
 
 ```bash
-npx skills add xindong/dit-skills --skill xdoa-office-docs
+npx skills add xindong/dit-skills --skill xdoa-skill
 ```
 
 ## 贡献方式
