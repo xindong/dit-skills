@@ -108,6 +108,21 @@ metadata:
 
 ### 3\.2 工具核心操作（含专属命令）
 
+`jcemb version` 检查工具是否安装
+
+**Mac下安装**
+
+```bash
+brew install bspiritxp/tap/jcemb
+```
+
+**Windows安装**
+
+```powershell
+scoop bucket add bspiritxp https://github.com/bspiritxp/scoop-bucket.git
+scoop install jcemb
+```
+
 #### 3\.2\.1 扫描目录向量化命令
 
 - 命令格式：`jcemb scan \&lt;path\&gt; \-r`
@@ -122,7 +137,7 @@ metadata:
 
 #### 3\.2\.2 检索查询命令
 
-- 命令格式：`jcemb query \&\#34;\&lt;query text\&gt;\&\#34; \-\-path \&lt;path\&gt; \-\-json`
+- 命令格式：`jcemb query \&\#34;\&lt;query text\&gt;\&\#34; \-\-path \&lt;path\&gt; \-\-json -u`
 
 - 参数说明：
 
@@ -131,6 +146,10 @@ metadata:
     - \-\-path \<path\>：必选参数，指定向量检索的目录路径（与扫描时的path一致，默认\./memory）
     
     - \-\-json：可选参数，指定检索结果以JSON格式输出，便于AI Agent解析读取上下文
+
+    - \-u: 可选参数，根据文件路径去重后的结果。
+
+    - \-\-rerank bm25: 可选参数, 对召回结果进行BM25重排。
 
 - 实操示例：`jcemb query \&\#34;用户登录模块的业务约束\&\#34; \-\-path \./memory \-\-json`（检索memory目录下与用户登录模块业务约束相关的记忆，以JSON格式返回结果）
 
