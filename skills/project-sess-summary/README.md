@@ -8,15 +8,38 @@
 
 ### 安装
 
-> `jcemb` 为独立 CLI 工具，需单独安装。具体安装方式请联系工具提供方。
+> `jcemb` 为独立 CLI 工具，需单独安装。
 
-安装后验证：
+
+
+**MAC安装**
 
 ```bash
-jcemb --help
+brew install jcemb
+```
+
+**Windwos下安装**
+
+_依赖 `scoop`_ https://scoop.sh/
+
+
+```
+scoop bucket add bspiritxp https://github.com/bspiritxp/scoop-bucket.git
+scoop install jcemb
+```
+
+
+
+安装后验证和配置：
+
+```bash
+jcemb version
+jcemb config
 ```
 
 若命令不可用，请检查 PATH 环境变量。
+
+> 配置可选择使用 openai ，然后使用taptap的endpoint和api_key
 
 ### 基本使用
 
@@ -36,13 +59,13 @@ jcemb query "用户登录模块的业务约束" --path ./memory --json
 
 **参数说明：**
 
-| 参数 | 命令 | 说明 |
-|---|---|---|
-| `<path>` | `scan` | 必选，要扫描的记忆文件目录（通常为 `./memory`） |
-| `-r` | `scan` | 可选，递归扫描子目录 |
-| `"<query>"` | `query` | 必选，检索关键词/自然语言提问，需用双引号包裹 |
-| `--path <path>` | `query` | 必选，检索目标目录（与 scan 的 path 一致） |
-| `--json` | `query` | 可选，以 JSON 格式输出结果，便于 Agent 解析 |
+| 参数              | 命令      | 说明                            |
+| --------------- | ------- | ----------------------------- |
+| `<path>`        | `scan`  | 必选，要扫描的记忆文件目录（通常为 `./memory`） |
+| `-r`            | `scan`  | 可选，递归扫描子目录                    |
+| `"<query>"`     | `query` | 必选，检索关键词/自然语言提问，需用双引号包裹       |
+| `--path <path>` | `query` | 必选，检索目标目录（与 scan 的 path 一致）   |
+| `--json`        | `query` | 可选，以 JSON 格式输出结果，便于 Agent 解析  |
 
 ## AGENTS.tmp.md 使用说明
 
@@ -60,11 +83,11 @@ cat skills/project-sess-summary/AGENTS.tmp.md >> /path/to/your-project/AGENTS.md
 
 引入后，Agent 会自动触发以下三个环节：
 
-| 阶段 | 触发时机 | Agent 行为 |
-|---|---|---|
-| **召回 (Recall)** | 新需求/重构/排查 Bug | 静默执行 `jcemb query "<核心词>" --path ./memory --json`，检索历史约束 |
-| **总结 (Summarize)** | 任务完成并确认 | 按价值判定标准过滤：高价值内容生成 `.md` 记忆文件存入 `memory/`，低价值跳过 |
-| **入库 (Scan)** | 总结并落盘后 | 自动执行 `jcemb scan ./memory -r`，增量向量化新记忆 |
+| 阶段                 | 触发时机          | Agent 行为                                                 |
+| ------------------ | ------------- | -------------------------------------------------------- |
+| **召回 (Recall)**    | 新需求/重构/排查 Bug | 静默执行 `jcemb query "<核心词>" --path ./memory --json`，检索历史约束 |
+| **总结 (Summarize)** | 任务完成并确认       | 按价值判定标准过滤：高价值内容生成 `.md` 记忆文件存入 `memory/`，低价值跳过           |
+| **入库 (Scan)**      | 总结并落盘后        | 自动执行 `jcemb scan ./memory -r`，增量向量化新记忆                   |
 
 ### 3. 记忆价值判定标准
 
